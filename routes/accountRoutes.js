@@ -71,5 +71,21 @@ router.post('/login', async (req, res) => {
       res.status(500).json({ message: 'Sunucu hatası.' });
     }
   });
-  
+ router.get('/profile/:username', async (req, res) => {
+     const { username } = req.params;
+     console.log(username);
+     try {
+       const pool = await mssql.connect();
+       const result = await pool.request()
+         .input('username', mssql.NVarChar, username)
+         .query(`
+         SELECT Username, Role, Department FROM USERS WHERE Username=@username
+         `);
+   console.log(result.recordset);
+       res.status(200).json(result.recordset);
+     } catch (err) {
+       console.error('Thread listeleme sırasında hata oluştu:', err);
+       res.status(500).json({ message: 'Sunucu hatası' });
+     }
+   });
 module.exports = router;

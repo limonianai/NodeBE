@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000; // Sunucunun çalışacağı port
 const jwtSecret = 'SuperSecretKeyThatIs32CharsLongAndSecure!'; // JWT için kullanılan secret key
 
 // Middleware
+// app.use(cors({ origin: 'http://localhost:3001' }));
 app.use(cors({ origin: 'https://limonai.vercel.app' }));
 app.use(bodyParser.json()); // JSON formatındaki request'leri işleme
 
