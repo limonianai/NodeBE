@@ -44,7 +44,10 @@ router.post('/query', async (req, res) => {
       });
   
       let aiResponse = '';
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.writeHead(200, { 
+        'Content-Type': 'text/plain',
+        'thread-id': currentThreadId 
+    });
   
       for await (const chunk of stream) {
         if (chunk.event === 'thread.message.delta' && Array.isArray(chunk.data.delta.content)) {
