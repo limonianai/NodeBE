@@ -5,6 +5,7 @@ const mssql = require('mssql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+
 // Express uygulamasını başlat
 const app = express();
 const PORT = process.env.PORT || 3000; // Sunucunun çalışacağı port
@@ -12,18 +13,18 @@ const jwtSecret = 'SuperSecretKeyThatIs32CharsLongAndSecure!'; // JWT için kull
 
 // Middleware
 
-// app.use(cors({
-//     origin: 'http://localhost:3001', 
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'], 
-//     exposedHeaders: ['thread-id']
-// }));
 app.use(cors({
-  origin: 'https://limonai.vercel.app', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-  exposedHeaders: ['thread-id']
+    origin: 'http://localhost:3001', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+    exposedHeaders: ['thread-id']
 }));
+// app.use(cors({
+//   origin: 'https://limonai.vercel.app', 
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization'], 
+//   exposedHeaders: ['thread-id']
+// }));
 //app.use(cors({ origin: 'https://limonai.vercel.app' }));
 app.use(bodyParser.json()); // JSON formatındaki request'leri işleme
 
@@ -67,5 +68,6 @@ const chatRoutes = require('./routes/chatRoutes');
 app.use('/api/chat', chatRoutes);
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/admin', adminRoutes);
-
+const productRoutes = require('./routes/products');
+app.use('/api/products', productRoutes);
 

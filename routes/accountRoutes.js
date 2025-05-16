@@ -57,6 +57,7 @@ router.post('/login', async (req, res) => {
           sub: user.Username,
           userId: user.Id,
           role: user.Role,
+          department: user.Department,
         },
         jwtSecret,
         { expiresIn: '3h' }
@@ -65,7 +66,7 @@ router.post('/login', async (req, res) => {
       // Admin olup olmadığını belirle
       const isAdmin = user.Role === 'Admin';
   
-      res.json({ token, expiration: '3 saat', isAdmin,username:user.Username,userid:user.Id });
+      res.json({ token, expiration: '3 saat', isAdmin,username:user.Username,userid:user.Id,department:user.Department });
     } catch (err) {
       console.error('Giriş sırasında hata oluştu:', err);
       res.status(500).json({ message: 'Sunucu hatası.' });

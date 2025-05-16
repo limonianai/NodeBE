@@ -42,7 +42,7 @@ router.post('/create-user', checkAdminAuth, async (req, res) => {
 router.get('/list-users', checkAdminAuth, async (req, res) => {
   try {
     const pool = await mssql.connect();
-    const result = await pool.request().query(`SELECT Id, Username, Role FROM Users`);
+    const result = await pool.request().query(`SELECT Id, Username, Role, Department FROM Users`);
 
     res.status(200).json(result.recordset);
   } catch (err) {
@@ -122,10 +122,10 @@ router.get('/top-users', checkAdminAuth, async (req, res) => {
   try {
     const pool = await mssql.connect();
     const result = await pool.request().query(`
-      SELECT u.Id AS UserId, u.Username, COUNT(c.Id) AS MessageCount
+      SELECT u.Id AS UserId, u.Username,u.Department, COUNT(c.Id) AS MessageCount
       FROM ChatInteractions c
       INNER JOIN Users u ON c.UserId = u.Id
-      GROUP BY u.Id, u.Username
+      GROUP BY u.Id, u.Username,u.Department
       ORDER BY MessageCount DESC
       OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY
     `);
