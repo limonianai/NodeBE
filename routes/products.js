@@ -18,7 +18,7 @@ router.get("/oliveyoung", async (req, res) => {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
     );
 
-    const url = "https://global.oliveyoung.com/display/page/best-seller?target=pillsTab1Nav2";
+    const url = "https://www.oliveyoung.co.kr/store/main/getBestList.do?t_page=마스크팩%20%3E%20시트팩&t_click=GNB&t_gnb_type=랭킹&t_swiping_type=N";
     console.log(`▶ Sayfa açılıyor: ${url}`);
     await page.goto(url, { waitUntil: "domcontentloaded" });
 
