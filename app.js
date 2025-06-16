@@ -13,11 +13,14 @@ const jwtSecret = 'SuperSecretKeyThatIs32CharsLongAndSecure!'; // JWT için kull
 
 // Middleware
 
+// app.use(cors({
+//     origin: 'http://localhost:3001', 
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type', 'Authorization'], 
+//     exposedHeaders: ['thread-id']
+// }));
 app.use(cors({
-    origin: 'http://localhost:3001', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'], 
-    exposedHeaders: ['thread-id']
+  origin: '*'
 }));
 // app.use(cors({
 //   origin: 'https://limonai.vercel.app', 
